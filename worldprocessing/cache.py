@@ -4,6 +4,7 @@ from typing import Optional
 from models.exportobject import ExportObject, ExportObjectJSONDecoder
 import json
 
+
 WORLD_FILE_NAME = 'default_map.txt'
 
 
