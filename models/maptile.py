@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List
+from typing import List, Optional
 
 
 @dataclass
@@ -12,13 +12,13 @@ class MapTile:
     buildingsIds: List[int]
     eventsIds: List[int]
     availableWorkTypesIds: List[int]
-    thisTileCustomDescription: str
-    nextTileCustomDescription: str
-    customFarBehindText: str
     editedAfterBiomeSetted: bool
-    canSeeThrow: bool
     isUnpassable: bool
     moveSpeedFactor: float
     stealthFactor: float
     additionalMoveSpeed: int
     additionalStealth: int
+    thisTileCustomDescription: str = ""
+    nextTileCustomDescription: str = ""
+    customFarBehindText: str = ""
+    canSeeThrow: bool = False

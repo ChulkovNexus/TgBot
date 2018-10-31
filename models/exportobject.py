@@ -9,15 +9,16 @@ from models.event import Event
 from models.item import Item
 from models.worktype import WorkType
 from models.worldmap import WorldMap
+from utils import nested_dataclass
 
 
-@dataclass
+@nested_dataclass
 class ExportObject:
-    map: WorldMap
     biomes: List[Biome]
     events: List[Event]
     workTypes: List[WorkType]
     items: List[Item]
+    map: WorldMap
 
 
 class ExportObjectJSONEncoder(json.JSONEncoder):

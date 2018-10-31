@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import List
 
 from models.biometile import BiomeTile
+from utils import nested_dataclass
 
 
 @dataclass

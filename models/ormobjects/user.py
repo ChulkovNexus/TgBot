@@ -9,6 +9,7 @@ class User(Base):
     id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
     name = Column(String(50))
     fullname = Column(String(50))
+    password = Column(String(50))
     xPosition = Column(Integer)
     yPosition = Column(Integer)
 

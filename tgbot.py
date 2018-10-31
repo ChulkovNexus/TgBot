@@ -1,7 +1,7 @@
 from http_app import app, Base, engine
 
 
-app.run('0.0.0.0', debug=True)
+app.run('0.0.0.0', debug=True, use_reloader=False)
 
 # proxy = "http://xNRDkU:WLm8U9@176.107.189.60:8000"
 #
