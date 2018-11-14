@@ -1,10 +1,10 @@
 import dataclasses
-from dataclasses import dataclass
-from enum import Enum
-from typing import List, Optional
 import json
+from enum import Enum
+from typing import List
 
 from models.biome import Biome
+from models.building import Building
 from models.event import Event
 from models.item import Item
 from models.worktype import WorkType
@@ -18,6 +18,7 @@ class ExportObject:
     events: List[Event]
     workTypes: List[WorkType]
     items: List[Item]
+    buildings: List[Building]
     map: WorldMap
 
 

@@ -1,23 +1,16 @@
 import json
 from models.exportobject import ExportObject, ExportObjectJSONEncoder
-from models.ormobjects.user import User
-from http_app import app, Session, engine, Base
+from http_app import app, engine
 from flask import request
-from worldprocessing import cache, mapviewer
-
-viewer = mapviewer.MapViewer()
+from worldprocessing import client_actions_processor
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    sess = Session()
-    sess.add(User(name='123', fullname='fsdfd', password='fsdf'))
-    sess.commit()
-    # session = app.Session()
-    # for name, fullname in session.query(User.name, User.fullname):
-    #     print(name, fullname)
+    client_actions_processor.create_user()
     return "Hello"
+
 
 @app.route('/drop')
 def drop_users():
@@ -28,29 +21,41 @@ def drop_users():
 
 @app.route('/east')
 def move_to_east():
-    sess = Session()
-    user = sess.query(User).filter_by(name='123').first()
-    x_position = user.xPosition or 0
-    y_position = user.yPosition or 0
-    if x_position < cache.memoryCache.map.getXLenght() - 1:
-        user.xPosition = x_position + 1
-
-    return viewer.get_nearest_description(cache.memoryCache.map.getTile(x_position, y_position))
+    client_actions_processor.move_to_east()
+    return client_actions_processor.get_current_user_position()
 
 
 @app.route('/west')
 def move_to_west():
-    return "west"
+    client_actions_processor.move_to_west()
+    return client_actions_processor.get_current_user_position()
 
 
 @app.route('/north')
 def move_to_north():
-    return "north"
+    client_actions_processor.move_to_north()
+    return client_actions_processor.get_current_user_position()
 
 
 @app.route('/south')
 def mode_to_south():
-    return "south"
+    client_actions_processor.mode_to_south()
+    return client_actions_processor.get_current_user_position()
+
+
+@app.route('/available_worktypes')
+def get_available_works():
+    return json.dump(client_actions_processor.get_available_works())
+
+
+@app.route('/get_another_persons_on_this_tile')
+def get_another_persons_on_this_tile():
+    return client_actions_processor.get_another_persons_on_this_tile()
+
+
+@app.route('/start_work',  methods=['POST'])
+def start_work():
+    return client_actions_processor.start_work()
 
 
 @app.route('/data', methods=['POST', 'GET'])
