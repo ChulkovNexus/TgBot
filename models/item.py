@@ -5,7 +5,6 @@ from models.bodyparts import BodyParts
 from models.itemgroup import ItemGroup
 from models.weartype import WearType
 
-
 @dataclass
 class Item:
     id: int

@@ -11,6 +11,7 @@ class BiomeTile:
     stealthFactor: float
     additionalStealth: int
     availableWorkTypesIds: List[int]
+    mapResources: List[int]
     possibleEventsIds: List[int]
     initialBuildingsIds: List[int]
     thisTileCustomDescription: str
