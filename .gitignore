@@ -1,5 +1,7 @@
 *.iml
 .gradle
+.idea/
+/.idea
 venv/
 /venv
 .venv
